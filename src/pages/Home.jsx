@@ -5,7 +5,7 @@ import Spinner from '../components/Spinner';
 
 
 const Home = () => {
-  const { data: items, isLoading } = useQuery(['items'], () => fetch(`https://ware-house-lymk.onrender.com/items`, {
+  const { data: items, isLoading } = useQuery(['items'], () => fetch(`http://localhost:5000/tools`, {
     method: 'GET',
   }).then(res => res.json()))
 
