@@ -1,11 +1,12 @@
 import { sendEmailVerification } from 'firebase/auth';
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useCreateUserWithEmailAndPassword, useUpdateProfile, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import auth from '../firebase.init';
-import Spinner from '../components/Spinner';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
+
+import auth from '../firebase.init';
+import useToken from '../hooks/useToken';
 
 const SignUp = () => {
 
@@ -19,33 +20,30 @@ const SignUp = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
     const navigate = useNavigate()
-
-    const [updateProfile, updateError] = useUpdateProfile(auth);
-
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
-  
-    useEffect(() => {
-        if (user || gUser) {
+    const [updateProfile, updateError] = useUpdateProfile(auth);
 
-            sendEmailVerification(auth.currentUser)
-            .then(() => {
-              alert('An email has sent for verify to your email')
-            });
-            console.log(user || gUser)
-            navigate(from, { replace: true });
-        }
-    }, [user, gUser, from, navigate])
+    
+    const [token] = useToken(user || gUser)
 
+   
 
-    if (loading || gLoading)     return <div className=' flex justify-center font-bold text-3xl mt-10'><Spinner /></div>
-
+    if (loading ||gLoading) return <div className='flex justify-center items-center h-screen'> <p>Loading...</p>
+    </div>
     let firebaseError;
-    if (error || gError|| updateError) {
-        firebaseError = <small className='text-red-500'>{error?.message || gError?.message || updateError?.message}</small>
+    if (error || updateError || gError) {
+        firebaseError = <small className='text-red-500'>{error?.message || updateError?.message}</small>
     }
-
+    if (token) {
+        sendEmailVerification(auth.currentUser)
+        .then(() => {
+          alert(`An verification email has sent for verify to ${user?.user.email}`)
+        });
+        navigate('/');
+    }
     const onSubmit = async data => {
+        console.log(data);
         await createUserWithEmailAndPassword(data.email, data.password)
         await updateProfile({ displayName: data.name });
     }
@@ -145,16 +143,16 @@ const SignUp = () => {
                         {firebaseError}
                         <button
                             type="submit"
-                            className="btn btn-outline w-full hover:bg-gray-700">Submit</button>
+                            className="btn btn-outline w-full hover:bg-pink-700">Submit</button>
 
 
                     </form>
-                    <small className=''>Already have an account<Link className='text-gray-700 ml-4' to='/logIn'>Go to Login</Link></small>
-
+                    <small>Already have an account ?<Link className='text-pink-700 ml-4' to='/logIn'>Go to Login</Link></small>
 
                     <div className="divider">OR</div>
 
-                    <button onClick={() => signInWithGoogle()} className="btn btn-outline w-full hover:bg-gray-700">Continue with google</button>
+                    <button onClick={() => signInWithGoogle()}     className="btn btn-outline w-full hover:bg-pink-700">Continue with google</button>
+
 
 
 

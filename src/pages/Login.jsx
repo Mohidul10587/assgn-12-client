@@ -1,11 +1,9 @@
-
 import React, { useEffect } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import auth from '../firebase.init';
-import Spinner from '../components/Spinner';
-
+import useToken from '../hooks/useToken';
 
 
 const Login = () => {
@@ -20,46 +18,24 @@ const Login = () => {
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
-    
+
+    const [token] = useToken(user || gUser)
+
     useEffect(() => {
-        if (user || gUser) {
-            let currentUser;
-            if (user) {
-                currentUser = {
-                    email: user.email
-                }
-            }
-            if (gUser) {
-                currentUser = {
-                    email: gUser.user.email
-                }
-            }
-            fetch('https://ware-house-lymk.onrender.com/jwt', {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(currentUser)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    localStorage.setItem('token', data.token);
-                    navigate(from, { replace: true });
-                });
-
-
-
+        if (token) {
+            navigate('/');
         }
-    }, [user,gUser, from, navigate])
+    }, [token, from, navigate])
 
     let firebaseError;
 
     if (loading || gLoading) {
-        return <div className=' flex justify-center font-bold text-3xl mt-10'><Spinner /></div>
+
+        return <div className='flex justify-center items-center h-screen'> <p>Loading</p>
+        </div>
     }
 
-    if (error ||gError) {
+    if (error) {
         firebaseError = <small className='text-red-500'>{error?.message}</small>
     }
 
@@ -139,22 +115,24 @@ const Login = () => {
                         {firebaseError}
                         <button
                             type="submit"
-                            className="btn btn-outline w-full hover:bg-gray-700">Submit</button>
+                            className="btn btn-outline w-full hover:bg-pink-700">Submit</button>
 
 
                     </form>
 
 
-                    <div className='flex justify-between text-xs'>
-                        <Link className='text-gray-700' to='/signUp'>Create new account</Link> 
-                        <Link className='text-gray-700' to='/resetPassword'>Reset password</Link> 
+                    <div className='flex justify-between text-xs text-pink-500 font-bold'>
+                        <Link  to='/signUp'>Create new account</Link> 
+                        <Link  to='/resetPassword'>Forgot password ?</Link> 
                    
                     </div>
 
                     <div className="divider">OR</div>
 
-                    <button onClick={() => signInWithGoogle()}    className="btn btn-outline w-full hover:bg-gray-700">Continue with google</button>
+                    <button onClick={() => signInWithGoogle()}     className="btn btn-outline w-full hover:bg-pink-700">Continue with google</button>
 
+
+                  
 
 
                 </div>
