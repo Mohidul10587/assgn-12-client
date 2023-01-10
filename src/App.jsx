@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SingUp';
 import ResetPassword from './pages/ResetPassword';
 import NotFound from './pages/NotFound';
+import Users from './pages/Users';
 
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/form' element={<Form />} />
             <Route path='/blog' element={<Blog />} />
+            <Route path='/users' element={<Users />} />
+
 
         
 
