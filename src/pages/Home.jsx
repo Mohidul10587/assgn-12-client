@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { Link } from 'react-router-dom';
-import Spinner from '../components/Spinner';
+import Banner from '../components/Banner';
+
 
 
 const Home = () => {
@@ -14,8 +15,8 @@ const Home = () => {
   }
   
   return (
-    <div className='-mt-10'>
-     
+    <div className='pt-20'>
+     <Banner />
       <h1 className='text-3xl font-bold text-center my-10'>Inventories</h1>
       <div className='grid md:grid-cols-3 grid-cols-1 gap-3 place-items-center text-center md:px-10 px-1'>
         {items?.slice(0, 6).map(item => <div key={item._id}className='border-2 border-gray-600 p-3 rounded-lg w-full'>
