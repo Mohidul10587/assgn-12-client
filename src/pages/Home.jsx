@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { Link } from 'react-router-dom';
+import Spinner from '../components/Spinner';
 import Banner from '../components/Banner';
+
 
 
 
@@ -26,7 +28,7 @@ const Home = () => {
       <p className='text-justify h-32 overflow-y-scroll py-2'>{item.description}</p>
       <p>Quantity :{item.quantity}</p>
       <p>Supplier:{item.supplierName}</p>
-      <Link to={`/inventory/${item._id}`}><button className=' text-white  rounded-md px-4 mt-2 py-2 bg-gray-500 hover:bg-gray-700'>Update Stock</button></Link>
+      <Link to='buy'><button className=' text-white  rounded-md px-4 mt-2 py-2 bg-gray-500 hover:bg-gray-700'>Buy Now</button></Link>
 
     </div>)}
       </div>
