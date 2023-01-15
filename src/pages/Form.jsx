@@ -35,8 +35,8 @@ const Form = () => {
             },
             body: JSON.stringify({
               name: data.name,
-              supplierName: data.supplierName,
               price: data.price,
+              minOrderQuantity: data.minOrderQuantity,
               quantity: data.quantity,
               description: data.description,
               img: imgUrl,
@@ -55,7 +55,7 @@ const Form = () => {
   }
   
   return (
-    <div className='flex justify-center'>
+    <div className='flex justify-center pt-24 min-h-screen'>
     
       <div className=''>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -85,32 +85,7 @@ const Form = () => {
             </label>
 
           </div>
-          <div className="form-control w-full max-w-xs">
-            <label className="label">
-              <span className="label-text">Name of Supplier</span>
-
-            </label>
-            <input
-
-              type="text"
-              placeholder="Name"
-              className="input input-bordered border-black w-full max-w-xs"
-
-              {...register("supplierName", {
-                required: {
-                  value: true,
-                  message: 'This is required field'
-                }
-
-              })} />
-
-            <label className="label">
-
-              {errors.name?.type === 'required' && <span className='text-red-500'>{errors.name?.message}</span>}
-
-            </label>
-
-          </div>
+       
           <div className="form-control w-full max-w-xs">
             <label className="label">
               <span className="label-text">Price</span>
@@ -143,7 +118,33 @@ const Form = () => {
 
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Quantity</span>
+              <span className="label-text">Minimum order Quantity</span>
+
+            </label>
+            <input
+
+              type="number"
+              placeholder="Price"
+              className="input input-bordered border-black w-full max-w-xs"
+
+              {...register("minOrderQuantity", {
+                required: {
+                  value: true,
+                  message: 'This is required field'
+                }
+
+              })} />
+
+            <label className="label">
+
+              {errors.price?.type === 'required' && <span className='text-red-500'>{errors.price?.message}</span>}
+
+            </label>
+
+          </div>
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text"> Available Quantity</span>
 
             </label>
             <input
@@ -167,7 +168,6 @@ const Form = () => {
             </label>
 
           </div>
-
           <div className="form-control w-full max-w-xs">
             <label className="label">
               <span className="label-text">Description</span>

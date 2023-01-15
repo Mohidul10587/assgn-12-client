@@ -26,8 +26,8 @@ const Home = () => {
       <p className='font-bold mt-3 text-xl'>{item.name}</p>
       <p>Price: {item.price} TK</p>
       <p className='text-justify h-32 overflow-y-scroll py-2'>{item.description}</p>
-      <p>Quantity :{item.quantity}</p>
-      <p>Supplier:{item.supplierName}</p>
+      <p>Available quantity :{item.quantity}</p>
+      <p>Minimum order quantity:{item.minOrderQuantity}</p>
       <Link to='buy'><button className=' text-white  rounded-md px-4 mt-2 py-2 bg-gray-500 hover:bg-gray-700'>Buy Now</button></Link>
 
     </div>)}

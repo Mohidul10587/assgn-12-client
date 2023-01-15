@@ -1,6 +1,8 @@
 
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
 import Home from './pages/Home';
 import Form from './pages/Form';
 import Blog from './pages/Blog';
@@ -36,6 +38,7 @@ function App() {
             <Route path='*' element={<NotFound />} />
       
           </Routes>
+          <Footer />
     </>
   )
 }
