@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import auth from '../firebase.init';
 import useToken from '../hooks/useToken';
+import Spinner from '../components/Spinner';
 
 
 const Login = () => {
@@ -23,7 +24,7 @@ const Login = () => {
 
     useEffect(() => {
         if (token) {
-            navigate('/');
+            navigate(from, { replace: true });
         }
     }, [token, from, navigate])
 
@@ -31,8 +32,7 @@ const Login = () => {
 
     if (loading || gLoading) {
 
-        return <div className='flex justify-center items-center h-screen'> <p>Loading</p>
-        </div>
+        return  <div className=' flex justify-center font-bold text-3xl pt-20 min-h-screen'><Spinner/></div>
     }
 
     if (error) {

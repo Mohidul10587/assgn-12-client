@@ -2,7 +2,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-
 import Home from './pages/Home';
 import Form from './pages/Form';
 import Blog from './pages/Blog';
@@ -12,6 +11,7 @@ import ResetPassword from './pages/ResetPassword';
 import NotFound from './pages/NotFound';
 import Users from './pages/Users';
 import BuyNow from './pages/BuyNow';
+import RequireAuth from './pages/RequireAuth';
 
 
 function App() {
@@ -25,12 +25,7 @@ function App() {
             <Route path='/form' element={<Form />} />
             <Route path='/blog' element={<Blog />} />
             <Route path='/users' element={<Users />} />
-            <Route path='/buy' element={<BuyNow />} />
-
-
-
-        
-
+            <Route path='/buy' element={<RequireAuth><BuyNow /></RequireAuth>} />
             <Route path='login' element={<Login />} />
             <Route path='signUp' element={<SignUp />} />
             <Route path='resetPassword' element={<ResetPassword />} />
