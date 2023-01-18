@@ -218,7 +218,7 @@ const Form = () => {
          
           <button
             type="submit"
-            className="btn btn-outline w-80 mt-10 hover:bg-gray-700">Add</button>
+            className="btn btn-outline w-80 mt-10 hover:bg-teal-700">Add</button>
 
 
         </form>

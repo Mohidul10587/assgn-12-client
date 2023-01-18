@@ -58,7 +58,7 @@ const ResetPassword = () => {
            
                 <button
                     type="submit"
-                    className="btn btn-outline w-full hover:bg-gray-700">Submit</button>
+                    className="btn btn-outline w-full hover:bg-teal-700">Submit</button>
 
 
             </form>

@@ -12,6 +12,7 @@ import NotFound from './pages/NotFound';
 import Users from './pages/Users';
 import BuyNow from './pages/BuyNow';
 import RequireAuth from './pages/RequireAuth';
+import Dashboard from './pages/Dashboard';
 
 
 function App() {
@@ -25,11 +26,12 @@ function App() {
             <Route path='/form' element={<Form />} />
             <Route path='/blog' element={<Blog />} />
             <Route path='/users' element={<Users />} />
-            <Route path='/buy' element={<RequireAuth><BuyNow /></RequireAuth>} />
+            <Route path='/buy/:id' element={<RequireAuth><BuyNow /></RequireAuth>} />
+            <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>} />
+
             <Route path='login' element={<Login />} />
             <Route path='signUp' element={<SignUp />} />
             <Route path='resetPassword' element={<ResetPassword />} />
-
             <Route path='*' element={<NotFound />} />
       
           </Routes>
