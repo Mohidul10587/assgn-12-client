@@ -13,6 +13,7 @@ import Users from './pages/Users';
 import BuyNow from './pages/BuyNow';
 import RequireAuth from './pages/RequireAuth';
 import Dashboard from './pages/Dashboard';
+import Payment from './pages/Payment';
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
             <Route path='/users' element={<Users />} />
             <Route path='/buy/:id' element={<RequireAuth><BuyNow /></RequireAuth>} />
             <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>} />
-
+            <Route path='/payment' element={<RequireAuth><Payment /></RequireAuth>} />
             <Route path='login' element={<Login />} />
             <Route path='signUp' element={<SignUp />} />
             <Route path='resetPassword' element={<ResetPassword />} />

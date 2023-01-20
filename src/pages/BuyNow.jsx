@@ -1,9 +1,13 @@
 import React from 'react'
+import { useParams, Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import Spinner from '../components/Spinner';
 
 const BuyNow = () => {
+
   const query = useParams()
   const id = query.id;
-  const { data: items, isLoading } = useQuery(['items'], () => fetch(`http://localhost:5000/tools/${id}`, {
+  const { data: item, isLoading } = useQuery(['item'], () => fetch(`http://localhost:5000/tools/${id}`, {
     method: 'GET',
   }).then(res => res.json()))
 
@@ -14,7 +18,7 @@ const BuyNow = () => {
   return (
     <div className='pt-20 min-h-screen'>
       
-
+<p>{item.name}</p>
 
     </div>
   )

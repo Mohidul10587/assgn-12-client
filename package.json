@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.16.4",
+    "@stripe/stripe-js": "^1.46.0",
     "@tanstack/react-query": "^4.22.0",
     "daisyui": "^2.46.1",
     "firebase": "^9.15.0",

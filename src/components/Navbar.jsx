@@ -38,16 +38,13 @@ const Navbar = () => {
         {user ? <div className='md:flex hidden'>
           <Link to='/'> <p className='sm:mx-3 mx-1 my-3 px-3 font-bold text-white'> Home</p></Link>
           <Link to='/dashboard'> <p className='sm:mx-3 mx-1 my-3 px-3  font-bold text-white'> Dashboard</p></Link>
-          
+          <Link to='/payment'> <p className='sm:mx-3 mx-1 my-3 px-3  font-bold text-white'> Payment</p></Link>
           <Link to='/blog'> <p className='sm:mx-3 mx-1 my-3 px-3  font-bold text-white'> Blog</p></Link>
-
           <button className='sm:mx-3 mx-1  my-3 px-3  font-bold text-white' onClick={signedOut}> Log Out</button>
         </div> : <div className='md:flex hidden'>
           <Link to='/'> <p className='sm:mx-3 mx-1 my-3 px-3 font-bold text-white'> Home</p></Link>
-
           <Link to='/blog'> <p className='sm:mx-3 mx-1 my-3 px-3  font-bold text-white'> Blog</p></Link>
           <Link to="/login"><button className='sm:mx-3 mx-1 my-3 px-3  font-bold text-white' >Log In</button></Link>
-
         </div>}
         {/* sidebar for mobile  device */}
         <svg className="md:hidden sharebtn hover:border-white border-teal-800 mr-4 p-2" onClick={() => setDropdown(!dropdown)} width='32px' fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" /></svg>

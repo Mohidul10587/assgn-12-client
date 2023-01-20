@@ -20,7 +20,7 @@ const Home = () => {
   const { data: items, isLoading } = useQuery(['items'], () => fetch(`http://localhost:5000/tools`, {
     method: 'GET',
   }).then(res => res.json()))
-
+  console.log(items)
   if (isLoading) {
     return <div className=' flex justify-center font-bold text-3xl pt-20 min-h-screen'><Spinner /></div>
   }
@@ -28,23 +28,11 @@ const Home = () => {
     <div className=''>
       <Banner />
       <h1 className='text-4xl font-bold text-center my-10'>Tools Gallery</h1>
-      {items?
-      
-      <div className='grid md:grid-cols-3 grid-cols-1 gap-3 place-items-center text-center md:px-10 px-1'>
-        {items.slice(0, 6).map(item => <div key={item._id} className='border-2 border-teal-600 overflow-hidden rounded-lg w-full'>
-          <img className='w-full h-60 border-b-2 border-teal-600' src={item.img} alt="" />
-          <div className='p-3'>
-            <p className='font-bold mt-3 text-xl'>{item.name}</p>
-            <p>Price: {item.price} TK</p>
-            <p className='text-justify h-32 overflow-y-scroll py-2'>{item.description}</p>
-            <p>Available quantity :{item.quantity}</p>
-            <p>Minimum order quantity:{item.minOrderQuantity}</p>
-            <Link to={`buy/${item._id}`}><button className=' text-white  rounded-md px-4 mt-2 py-2 bg-teal-700'>Buy Now</button></Link>
 
-          </div>
-        </div>)}
-      </div>:<div className=' flex justify-center font-bold text-3xl pt-20'><Spinner /></div>}
-      <div className='grid md:grid-cols-3 grid-cols-1 gap-3 place-items-center text-center md:px-10 px-1'>
+
+
+
+      {items ? <div className='grid md:grid-cols-3 grid-cols-1 gap-3 place-items-center text-center md:px-10 px-1'>
         {items?.slice(0, 6).map(item => <div key={item._id} className='border-2 border-teal-600 overflow-hidden rounded-lg w-full'>
           <img className='w-full h-60 border-b-2 border-teal-600' src={item.img} alt="" />
           <div className='p-3'>
@@ -58,47 +46,49 @@ const Home = () => {
           </div>
         </div>)}
       </div>
+        : <div className=' flex justify-center font-bold text-3xl pt-20 min-h-screen'><Spinner /></div>}
+
 
 
       {/* Bushiness Summary */}
 
-<h1 className='text-4xl font-bold text-center  mt-20'>At a Glance</h1>
-<h1 className='text-xl text-center '>We are one of your business partner</h1>
-<div className='flex justify-between px-20 mt-20'>
-  <div className='flex justify-center items-center border-[1px] border-teal-400 h-44 w-44'>
-   <div className='text-center'>
-   <p className='flex justify-center text-4xl text-teal-600'><FiFlag/></p>
-    <p className='text-4xl mt-4 font-bold'>72</p>
-    <p className='text-teal-600 font-bold'>Countries</p>
-   </div>
-  </div>
-  <div className='flex justify-center items-center border-[1px] border-teal-400 h-44 w-44'>
-   <div className='text-center'>
-   <p className='flex justify-center text-4xl text-teal-600'><FaUsers/></p>
-    <p className='text-4xl mt-4 font-bold'>480+</p>
-    <p className='text-teal-600 font-bold'>Satisfied Customer</p>
-   </div>
-  </div><div className='flex justify-center items-center border-[1px] border-teal-400 h-44 w-44'>
-   <div className='text-center'>
-   <p className='flex justify-center text-4xl text-teal-600'><AiFillLike/></p>
-    <p className='text-4xl mt-4 font-bold'>380+</p>
-    <p className='text-teal-600 font-bold'>Feedback</p>
-   </div>
-  </div><div className='flex justify-center items-center border-[1px] border-teal-400 h-44 w-44'>
-   <div className='text-center'>
-   <p className='flex justify-center text-4xl text-teal-600'><HiTemplate/></p>
-    <p className='text-4xl mt-4 font-bold'>24+</p>
-    <p className='text-teal-600 font-bold'>Items</p>
-   </div>
-  </div><div className='flex justify-center items-center border-[1px] border-teal-400 h-44 w-44'>
-   <div className='text-center'>
-   <p className='flex justify-center text-4xl text-teal-600'><CgDollar/></p>
-    <p className='text-4xl mt-4 font-bold'>800K$+</p>
-    <p className='text-teal-600 font-bold'>Revenues</p>
-   </div>
-  </div>
- 
-</div>
+      <h1 className='text-4xl font-bold text-center  mt-20'>At a Glance</h1>
+      <h1 className='text-xl text-center '>We are one of your business partner</h1>
+      <div className='flex justify-between px-20 mt-20'>
+        <div className='flex justify-center items-center border-[1px] border-teal-400 h-44 w-44'>
+          <div className='text-center'>
+            <p className='flex justify-center text-4xl text-teal-600'><FiFlag /></p>
+            <p className='text-4xl mt-4 font-bold'>72</p>
+            <p className='text-teal-600 font-bold'>Countries</p>
+          </div>
+        </div>
+        <div className='flex justify-center items-center border-[1px] border-teal-400 h-44 w-44'>
+          <div className='text-center'>
+            <p className='flex justify-center text-4xl text-teal-600'><FaUsers /></p>
+            <p className='text-4xl mt-4 font-bold'>480+</p>
+            <p className='text-teal-600 font-bold'>Satisfied Customer</p>
+          </div>
+        </div><div className='flex justify-center items-center border-[1px] border-teal-400 h-44 w-44'>
+          <div className='text-center'>
+            <p className='flex justify-center text-4xl text-teal-600'><AiFillLike /></p>
+            <p className='text-4xl mt-4 font-bold'>380+</p>
+            <p className='text-teal-600 font-bold'>Feedback</p>
+          </div>
+        </div><div className='flex justify-center items-center border-[1px] border-teal-400 h-44 w-44'>
+          <div className='text-center'>
+            <p className='flex justify-center text-4xl text-teal-600'><HiTemplate /></p>
+            <p className='text-4xl mt-4 font-bold'>24+</p>
+            <p className='text-teal-600 font-bold'>Items</p>
+          </div>
+        </div><div className='flex justify-center items-center border-[1px] border-teal-400 h-44 w-44'>
+          <div className='text-center'>
+            <p className='flex justify-center text-4xl text-teal-600'><CgDollar /></p>
+            <p className='text-4xl mt-4 font-bold'>800K$+</p>
+            <p className='text-teal-600 font-bold'>Revenues</p>
+          </div>
+        </div>
+
+      </div>
 
       <h2 className="py-2 text-4xl text-center font-bold my-24">What our clients say</h2>
       <div className="md:flex justify-between px-10 items-center bg-teal-900 py-10  text-white">
