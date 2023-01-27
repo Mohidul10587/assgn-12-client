@@ -13,26 +13,29 @@ import { useEffect } from 'react';
 const CheckoutForm = () => {
 
   const [cardError, setCardError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [processing, setProcessing] = useState(false);
+  const [transactionId, setTransactionId] = useState('');
   const [clientSecret, setClientSecret] = useState("");
   const stripe = useStripe();
   const elements = useElements();
 
-const price = 5000
+  const price = 5000
 
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     fetch("http://localhost:5000/create-payment-intent", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-          
-        },
-        body: JSON.stringify({ price }),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+
+      },
+      body: JSON.stringify({ price }),
     })
-        .then((res) => res.json())
-        .then((data) => setClientSecret(data.clientSecret));
-}, [price]);
+      .then((res) => res.json())
+      .then((data) => setClientSecret(data.clientSecret));
+  }, [price]);
 
 
 
@@ -62,25 +65,34 @@ const price = 5000
     else {
       setCardError('')
     }
-
-
+    setSuccess('');
+    setProcessing(true);
     const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
       clientSecret,
       {
-          payment_method: {
-              card: card,
-              billing_details: {
-                  name: 'Customer',
-                  email: 'abc@gmail.com'
-              },
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: 'Customer',
+            email: 'abc@gmail.com'
           },
+        },
       },
-  );
+    );
+    // 789@Afif@10587
+    // afrojha78956421
+    if (confirmError) {
+      setCardError(confirmError.message);
+      return;
+    }
+    if (paymentIntent.status === "succeeded") {
+      setSuccess('congratulation')
+      setTransactionId(paymentIntent.id)
+      console.log('card info', paymentIntent);
+      // store payment info in the database
 
-
-
-
-
+    }
+    setProcessing(false);
 
 
 
@@ -115,11 +127,18 @@ const price = 5000
         <button
           className='btn btn-sm mt-4 btn-primary'
           type="submit"
-          disabled={!stripe || !clientSecret}>
+          disabled={!stripe || !clientSecret || processing}>
           Pay
         </button>
       </form>
       <p className="text-red-500">{cardError}</p>
+      {
+        success && <div>
+          <p className='text-green-500'>{success}</p>
+          <p>Your transactionId: <span className='font-bold'>{transactionId}</span></p>
+          
+        </div>
+      }
     </>
   );
 };
