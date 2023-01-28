@@ -1,56 +1,84 @@
-import React, { useEffect } from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { sendEmailVerification } from 'firebase/auth';
+import React from 'react'
+import { useCreateUserWithEmailAndPassword, useUpdateProfile, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import auth from '../firebase.init';
-import useToken from '../hooks/useToken';
-import Spinner from '../components/Spinner';
 
 
-const Login = () => {
+import auth from './firebase.init';
+import useToken from '../../hooks/useToken';
+
+const SignUp = () => {
+
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-    const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
-
 
     const { register, formState: { errors }, handleSubmit } = useForm();
-
-
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
     const navigate = useNavigate()
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
+    const [updateProfile, updateError] = useUpdateProfile(auth);
 
-
+    
     const [token] = useToken(user || gUser)
 
-    useEffect(() => {
-        if (token) {
-            navigate(from, { replace: true });
-        }
-    }, [token, from, navigate])
+   
 
+    if (loading ||gLoading) return <div className='flex justify-center items-center h-screen'> <p>Loading...</p>
+    </div>
     let firebaseError;
-
-    if (loading || gLoading) {
-
-        return  <div className=' flex justify-center font-bold text-3xl pt-20 min-h-screen'><Spinner/></div>
+    if (error || updateError || gError) {
+        firebaseError = <small className='text-red-500'>{error?.message || updateError?.message}</small>
     }
-
-    if (error) {
-        firebaseError = <small className='text-red-500'>{error?.message}</small>
+    if (token) {
+        sendEmailVerification(auth.currentUser)
+        .then(() => {
+          alert(`An verification email has sent for verify to ${user?.user.email}`)
+        });
+        navigate('/');
     }
-
-    const onSubmit = data => {
-
-        signInWithEmailAndPassword(data.email, data.password)
-
+    const onSubmit = async data => {
+        console.log(data);
+        await createUserWithEmailAndPassword(data.email, data.password)
+        await updateProfile({ displayName: data.name });
     }
     return (
-        <div className='flex justify-center items-center'>
+        <div className='flex justify-center items-center '>
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
-                    <h2 className="text-center text-xl">Log in</h2>
+                    <h2 className="text-center text-xl">Sign Up</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Name</span>
 
+                            </label>
+                            <input
+
+                                type="text"
+                                placeholder="Name"
+                                className="input input-bordered border-black w-full max-w-xs"
+
+                                {...register("name", {
+                                    required: {
+                                        value: true,
+                                        message: 'This is required field'
+                                    }
+
+                                })} />
+
+                            <label className="label">
+
+                                {errors.name?.type === 'required' && <span className='text-red-500'>{errors.name?.message}</span>}
+
+                            </label>
+
+                        </div>
 
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
@@ -119,26 +147,20 @@ const Login = () => {
 
 
                     </form>
-
-
-                    <div className='flex justify-between text-xs text-pink-500 font-bold'>
-                        <Link  to='/signUp'>Create new account</Link> 
-                        <Link  to='/resetPassword'>Forgot password ?</Link> 
-                   
-                    </div>
+                    <small>Already have an account ?<Link className='text-pink-700 ml-4' to='/logIn'>Go to Login</Link></small>
 
                     <div className="divider">OR</div>
 
                     <button onClick={() => signInWithGoogle()}     className="btn btn-outline w-full hover:bg-pink-700">Continue with google</button>
 
 
-                  
+
 
 
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default Login;
+export default SignUp

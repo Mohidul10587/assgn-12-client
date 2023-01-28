@@ -3,7 +3,7 @@ import { signOut } from 'firebase/auth';
 import React, { useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useNavigate, } from 'react-router-dom'
-import auth from '../firebase.init';
+import auth from '../pages/Authentication/firebase.init';
 
 
 

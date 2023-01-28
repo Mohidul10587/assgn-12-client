@@ -1,7 +1,7 @@
 import { sendPasswordResetEmail } from 'firebase/auth';
 import React from 'react'
 import { useForm } from 'react-hook-form';
-import auth from '../firebase.init';
+import auth from './firebase.init';
 
 const ResetPassword = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();

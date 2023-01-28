@@ -2,8 +2,8 @@ import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
 import { Link, Outlet } from 'react-router-dom'
-import auth from '../firebase.init'
-import useAdmin from '../hooks/useAdmin'
+import auth from '../Authentication/firebase.init'
+import useAdmin from '../../hooks/useAdmin'
 import {GoThreeBars} from 'react-icons/go'
 
 
@@ -36,6 +36,8 @@ const Dashboard = () => {
           {/* <!-- Sidebar content here --> */}
           <li className='mb-2 bg-white rounded-md'> <Link to='/dashboard'>Profile</Link></li>
           <li className='mb-2 bg-white rounded-md'> <Link to='/dashboard/MyOrders'>My Orders</Link></li>
+          <li className='mb-2 bg-white rounded-md'> <Link to='/dashboard/MyReview'>My Review</Link></li>
+
           {admin && <div>
 
             <li className='mb-2 bg-white rounded-md'> <Link to='/dashboard/AllOrders'>All Orders</Link></li>
