@@ -34,6 +34,7 @@ const BuyNow = () => {
 
         },
         body: JSON.stringify({
+          email: user.email,
           item,
           quantity: orderQuantity,
 
@@ -43,7 +44,7 @@ const BuyNow = () => {
         .then(() => {
 
           alert('ok')
-          
+
         })
     }
 

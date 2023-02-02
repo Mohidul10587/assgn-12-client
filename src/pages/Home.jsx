@@ -9,13 +9,6 @@ import { AiFillLike } from 'react-icons/ai';
 import { HiTemplate } from 'react-icons/hi';
 import { CgDollar } from 'react-icons/cg';
 
-
-
-
-
-
-
-
 const Home = () => {
   const { data: items, isLoading } = useQuery(['items'], () => fetch(`http://localhost:5000/tools`, {
     method: 'GET',
