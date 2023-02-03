@@ -10,8 +10,8 @@ import { useEffect } from 'react';
 ;
 
 
-const CheckoutForm = () => {
-
+const CheckoutForm = ({quantity}) => {
+console.log(quantity)
   const [cardError, setCardError] = useState('');
   const [success, setSuccess] = useState('');
   const [processing, setProcessing] = useState(false);
@@ -20,7 +20,7 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const price = 5000
+  const price = quantity;
 
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const CheckoutForm = () => {
 
 
 
-
+console.log(clientSecret)
 
 
   const handleSubmit = async (event) => {

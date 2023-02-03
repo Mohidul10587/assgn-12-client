@@ -2,7 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import auth from './Authentication/firebase.init';
+import auth from '../Authentication/firebase.init';
 
 
 const Form = () => {

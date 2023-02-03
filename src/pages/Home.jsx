@@ -13,7 +13,7 @@ const Home = () => {
   const { data: items, isLoading } = useQuery(['items'], () => fetch(`http://localhost:5000/tools`, {
     method: 'GET',
   }).then(res => res.json()))
-  console.log(items)
+
   if (isLoading) {
     return <div className=' flex justify-center font-bold text-3xl pt-20 min-h-screen'><Spinner /></div>
   }

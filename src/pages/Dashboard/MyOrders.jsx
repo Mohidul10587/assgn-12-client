@@ -20,7 +20,7 @@ const MyOrders = () => {
 
     }).then(res => res.json())
       .then(data => {
-        console.log(data)
+     
         if (data.deletedCount) {
         
          
@@ -37,7 +37,7 @@ const MyOrders = () => {
   return (
     <div>{myOrders.map(order => <div key={order._id}>
       <p>   {order.email}</p>
-      <Link to='/payment'><button className='btn'> Pay</button></Link>
+      <Link to={`/payment/${order._id}`}><button className='btn'> Pay</button></Link>
    <button onClick={()=>handleDelete(order._id)}>Delete</button>
    
     </div>)}
