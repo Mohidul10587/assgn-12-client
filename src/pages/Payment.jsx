@@ -12,24 +12,24 @@ const Payment = () => {
     const id = query.id;
 
 
-    const { isLoading, data: price, refetch } = useQuery(['users'], () =>
-        fetch(`http://localhost:5000/orderPayment/${id}`, {
+    const { isLoading, data: singleOrder, refetch } = useQuery(['users'], () =>
+        fetch(`http://localhost:5000/orders/${id}`, {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
         }).then(res => res.json()))
     if (isLoading) {
-        return <p>loading</p>
+        return <h1>Loading...</h1> 
     }
-  console.log(price.quantity)
+  console.log(singleOrder.quantity)
     return (
 
         <div className='pt-24 min-h-screen flex justify-center'>
 
             <div className='w-96 border-2 p-4 border-black h-44'>
                 <Elements stripe={stripePromise}>
-                    <CheckoutForm quantity={price.quantity}/>
+                    <CheckoutForm singleOrder={singleOrder}/>
                 </Elements>
 
             </div>

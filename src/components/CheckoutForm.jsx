@@ -10,8 +10,8 @@ import { useEffect } from 'react';
 ;
 
 
-const CheckoutForm = ({quantity}) => {
-console.log(quantity)
+const CheckoutForm = ({singleOrder}) => {
+
   const [cardError, setCardError] = useState('');
   const [success, setSuccess] = useState('');
   const [processing, setProcessing] = useState(false);
@@ -20,7 +20,7 @@ console.log(quantity)
   const stripe = useStripe();
   const elements = useElements();
 
-  const price = quantity;
+  const price = singleOrder.item.price;
 
 
   useEffect(() => {
@@ -83,19 +83,34 @@ console.log(clientSecret)
     // afrojha78956421
     if (confirmError) {
       setCardError(confirmError.message);
-      return;
+      return; 
     }
     if (paymentIntent.status === "succeeded") {
-      setSuccess('congratulation')
-      setTransactionId(paymentIntent.id)
-      console.log('card info', paymentIntent);
+      console.log('card info', card);
       // store payment info in the database
-
-    }
-    setProcessing(false);
-
-
-
+      const payment = {
+         myPrice : price,
+         id:singleOrder._id
+          
+      }
+      fetch('http://localhost:5000/payments', {
+          method: 'POST',
+          headers: {
+              'content-type': 'application/json',
+         
+          },
+          body: JSON.stringify(payment)
+      })
+          .then(res => res.json())
+          .then(data => {
+              console.log(data);
+              if (data.insertedId) {
+                  setSuccess('Congrats! your payment completed');
+                  setTransactionId(paymentIntent.id);
+              }
+          })
+  }
+  setProcessing(false);
 
   }
 

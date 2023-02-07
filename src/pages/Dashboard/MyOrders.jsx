@@ -35,10 +35,11 @@ const MyOrders = () => {
   }
   console.log(myOrders)
   return (
-    <div>{myOrders.map(order => <div key={order._id}>
+    <div>{myOrders.map(order => <div className='border-2 border-black my-3 p-3
+    ' key={order._id}>
       <p>   {order.email}</p>
-      <Link to={`/payment/${order._id}`}><button className='btn'> Pay</button></Link>
-   <button onClick={()=>handleDelete(order._id)}>Delete</button>
+     {order.paid ? <button>Paid</button> : <Link to={`/payment/${order._id}`}><button className='btn'> Pay</button></Link>} 
+   <button onClick={()=>handleDelete(order._id)} className='btn'>Delete</button>
    
     </div>)}
 

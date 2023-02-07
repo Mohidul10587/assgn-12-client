@@ -5,6 +5,7 @@ import Spinner from '../components/Spinner';
 import { useState } from 'react';
 import auth from './Authentication/firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useEffect } from 'react';
 
 const BuyNow = () => {
 
@@ -19,10 +20,12 @@ const BuyNow = () => {
   }).then(res => res.json()))
 
 
+console.log(item)
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const orderQuantity = e.target.quantity.value
-    if (orderQuantity < item.minOrderQuantity || orderQuantity > item.quantity) {
+    if (orderQuantity < parseInt(item.minOrderQuantity) || orderQuantity > parseInt(item.quantity)) {
       console.log('impossible')
     }
     else {
