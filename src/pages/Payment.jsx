@@ -20,20 +20,24 @@ const Payment = () => {
             }
         }).then(res => res.json()))
     if (isLoading) {
-        return <h1>Loading...</h1> 
+        return <h1 className='pt-24 min-h-screen'>Loading...</h1>
     }
-  console.log(singleOrder.quantity)
-    return (
+    console.log(singleOrder.quantity)
+    return (<div className='pt-24 min-h-screen '>
 
-        <div className='pt-24 min-h-screen flex justify-center'>
+        <h1 className='text-center'>Give the card information</h1>
+        <div className='flex justify-center'>
 
             <div className='w-96 border-2 p-4 border-black h-44'>
+
+
                 <Elements stripe={stripePromise}>
-                    <CheckoutForm singleOrder={singleOrder}/>
+                    <CheckoutForm singleOrder={singleOrder} />
                 </Elements>
 
             </div>
         </div>
+    </div>
     )
 }
 

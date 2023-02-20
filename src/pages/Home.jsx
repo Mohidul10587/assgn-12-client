@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+
 import React from 'react'
 import { Link } from 'react-router-dom';
 import Spinner from '../components/Spinner';
@@ -8,23 +8,37 @@ import { FaUsers } from 'react-icons/fa';
 import { AiFillLike } from 'react-icons/ai';
 import { HiTemplate } from 'react-icons/hi';
 import { CgDollar } from 'react-icons/cg';
+import { useQuery } from '@tanstack/react-query';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from './Authentication/firebase.init';
 
 const Home = () => {
+
+  const user = useAuthState(auth)
+
+  console.log(user)
   const { data: items, isLoading } = useQuery(['items'], () => fetch(`http://localhost:5000/tools`, {
     method: 'GET',
   }).then(res => res.json()))
+  console.log(items)
+  const { data: reviews, isLoadingReview } = useQuery(['reviews'], () => fetch(`http://localhost:5000/reviews`, {
+    method: 'GET',
+  }).then(res => res.json()))
+  console.log(reviews)
+
 
   if (isLoading) {
+    return <div className=' flex justify-center font-bold text-3xl pt-20 min-h-screen'><Spinner /></div>
+  }
+  if (isLoadingReview) {
     return <div className=' flex justify-center font-bold text-3xl pt-20 min-h-screen'><Spinner /></div>
   }
   return (
     <div className=''>
       <Banner />
       <h1 className='text-4xl font-bold text-center my-10'>Tools Gallery</h1>
-
-
-
-
+<button className='btn'><a href="https://courier.uddoktarbazar.com/">Go to courier</a>
+</button>
       {items ? <div className='grid md:grid-cols-3 grid-cols-1 gap-3 place-items-center text-center md:px-10 px-1'>
         {items?.slice(0, 6).map(item => <div key={item._id} className='border-2 border-teal-600 overflow-hidden rounded-lg w-full'>
           <img className='w-full h-60 border-b-2 border-teal-600' src={item.img} alt="" />
@@ -40,8 +54,6 @@ const Home = () => {
         </div>)}
       </div>
         : <div className=' flex justify-center font-bold text-3xl pt-20 min-h-screen'><Spinner /></div>}
-
-
 
       {/* Bushiness Summary */}
 
@@ -97,6 +109,21 @@ const Home = () => {
       </div>
       <div className='bg-red-300 font-bold mt-10 h-96 text-center'>
         Second extra section
+      </div>
+
+      {/* Review */}
+      <div className='px-4'>
+        <h1 className='text-4xl font-bold text-center  mt-20'>Review</h1>
+        {reviews?.map(review =>
+
+          <div key={review._id} className='bg-teal-300 my-3 p-4' >
+            <div className='flex items-center'>
+              <img className='w-10 h-10 rounded-full border-black border-2 p-1' src={user[0]?.photoURL} alt="" />
+              <p className='ml-2 font-bold'>{user[0]?.displayName}</p>
+              <p className='ml-2'>{review.ratings}</p>
+            </div>
+            <p>{review.review}</p>
+          </div>)}
       </div>
     </div>
   )

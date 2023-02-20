@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 ;
 
 
-const CheckoutForm = ({singleOrder}) => {
+const CheckoutForm = ({ singleOrder }) => {
 
   const [cardError, setCardError] = useState('');
   const [success, setSuccess] = useState('');
@@ -40,7 +40,7 @@ const CheckoutForm = ({singleOrder}) => {
 
 
 
-console.log(clientSecret)
+  console.log(clientSecret)
 
 
   const handleSubmit = async (event) => {
@@ -83,34 +83,35 @@ console.log(clientSecret)
     // afrojha78956421
     if (confirmError) {
       setCardError(confirmError.message);
-      return; 
+      return;
     }
     if (paymentIntent.status === "succeeded") {
       console.log('card info', card);
       // store payment info in the database
       const payment = {
-         myPrice : price,
-         id:singleOrder._id
-          
+        myPrice: price,
+        orderId: singleOrder._id,
+        transactionId: paymentIntent.id
+
       }
       fetch('http://localhost:5000/payments', {
-          method: 'POST',
-          headers: {
-              'content-type': 'application/json',
-         
-          },
-          body: JSON.stringify(payment)
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+
+        },
+        body: JSON.stringify(payment)
       })
-          .then(res => res.json())
-          .then(data => {
-              console.log(data);
-              if (data.insertedId) {
-                  setSuccess('Congrats! your payment completed');
-                  setTransactionId(paymentIntent.id);
-              }
-          })
-  }
-  setProcessing(false);
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          if (data.insertedId) {
+            setSuccess('Congrats! your payment completed');
+            setTransactionId(paymentIntent.id);
+          }
+        })
+    }
+    setProcessing(false);
 
   }
 
@@ -123,14 +124,17 @@ console.log(clientSecret)
   return (
     <>
       <form onSubmit={handleSubmit}>
+
+       
         <CardElement
           options={{
             style: {
               base: {
+             
                 fontSize: '16px',
-                color: '#424770',
+                color: 'black',
                 '::placeholder': {
-                  color: '#aab7c4',
+                  color: 'black',
                 },
               },
               invalid: {
@@ -151,7 +155,7 @@ console.log(clientSecret)
         success && <div>
           <p className='text-green-500'>{success}</p>
           <p>Your transactionId: <span className='font-bold'>{transactionId}</span></p>
-          
+
         </div>
       }
     </>

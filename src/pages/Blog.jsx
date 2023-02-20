@@ -1,16 +1,28 @@
+import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 
+
+
 const Blog = () => {
+
   return (
-    <div className='px-4'>
-      <h1 className='font-bold'>Q-1:Difference between javascript and nodejs</h1>
-      <p>Ans: Javascript is a programming language. We use JS mainly to write scripts on a website that makes web pages more dynamic in nature.</p>
-      <p>Nodejs is a runtime environment for Javascript that lets a user run this programming language on the server-side as well.</p>
-      <h1 className='font-bold'>Q-2:When should you use nodejs and when should you use mongodb</h1>
-      <h1 className='font-bold'>Q-3:Differences between sql and nosql databases.</h1>
-      <p>Ans:SQL databases are table-based on the other hand NoSQL databases are either key-value pairs, document-based,</p>
-      <h1 className='font-bold'>Q-4:What is the purpose of jwt and how does it work</h1>
-      <p>Ans: Make secure the data is the Purpose of JWT</p>
+    <div className='px-4 pt-24'>
+      <h1 className='font-bold'>14.1 How will you improve the performance of a React Application?</h1>
+      <p>Ans: </p>
+     
+      <h1 className='font-bold'>14.2 What are the different ways to manage a state in a React application?</h1>
+      <p>Ans: </p>
+
+      <h1 className='font-bold'>14.3 How does prototypical inheritance work ?</h1>
+      <p>Ans:</p>
+      <h1 className='font-bold'>14.4 Why you do not set the state directly in React. </h1>
+      <p>Ans: </p>
+
+      <h1 className='font-bold'>14.5 You have an array of products. Each product has a name, price, description, etc. How will you implement a search to find products by name?</h1>
+      <p>Ans: </p>
+
+      <h1 className='font-bold'>14.6 What is a unit test? Why should write unit tests?</h1>
+      <p>Ans: </p>
     </div>
   )
 }
