@@ -7,8 +7,8 @@ import auth from '../Authentication/firebase.init';
 const MyOrders = () => {
 
   const [user, loading] = useAuthState(auth);
-
-  const { data: myOrders, isLoading, refetch } = useQuery(['myOrders'], () => fetch(`http://localhost:5000/myOrders/${user.email}`, {
+  console.log(user)
+  const { data: myOrders, isLoading, refetch } = useQuery(['myOrders',user], () => fetch(`http://localhost:5000/myOrders/${user.email}`, {
     method: 'GET',
   }).then(res => res.json()))
 
@@ -35,7 +35,7 @@ const MyOrders = () => {
   }
   console.log(myOrders)
   return (
-    <div>{myOrders.map(order => <div className='border-2 border-teal-600 my-3 p-3
+    <div>{myOrders?.map(order => <div className='border-2 border-teal-600 my-3 p-3
     ' key={order._id}>
       <div className='flex items-center justify-between'>
         <div className='flex items-center'>
@@ -50,23 +50,23 @@ const MyOrders = () => {
             <p className='font-bold'> Transaction Id : {order.transactionId}</p>
           </div> : <div>
 
-          <Link to={`/payment/${order._id}`}><button className='btn'> Pay</button></Link>
-                {/* The button to open modal */}
-          <label htmlFor="my-modal" className="btn ml-4">Delete</label>
+            <Link to={`/payment/${order._id}`}><button className='btn'> Pay</button></Link>
+            {/* The button to open modal */}
+            <label htmlFor="my-modal" className="btn ml-4">Delete</label>
 
-          {/* Put this part before </body> tag */}
-          <input type="checkbox" id="my-modal" className="modal-toggle" />
-          <div className="modal">
-            <div className="modal-box">
-              <h3 className="font-bold text-lg text-center">Are you sure to delete this order ?</h3>
-              <div className="modal-action justify-center">
-                <label onClick={() => handleDelete(order._id)}  htmlFor="my-modal" className="btn">Yes</label>
-                <label   htmlFor="my-modal" className="btn">No</label>
+            {/* Put this part before </body> tag */}
+            <input type="checkbox" id="my-modal" className="modal-toggle" />
+            <div className="modal">
+              <div className="modal-box">
+                <h3 className="font-bold text-lg text-center">Are you sure to delete this order ?</h3>
+                <div className="modal-action justify-center">
+                  <label onClick={() => handleDelete(order._id)} htmlFor="my-modal" className="btn">Yes</label>
+                  <label htmlFor="my-modal" className="btn">No</label>
+                </div>
               </div>
             </div>
-          </div>
-            </div>}
-      
+          </div>}
+
         </div>
       </div>
 

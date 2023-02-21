@@ -1,9 +1,11 @@
 import React from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../Authentication/firebase.init';
 
 
 const MyReview = () => {
 
-
+const [user] = useAuthState(auth)
   const handleSubmit = (e) => {
     e.preventDefault()
     const review = e.target.review.value
@@ -18,6 +20,7 @@ const MyReview = () => {
 
         },
         body: JSON.stringify({
+          email:user.email,
           review,
           ratings
 
