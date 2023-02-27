@@ -24,12 +24,12 @@ const SignUp = () => {
     let from = location.state?.from?.pathname || "/";
     const [updateProfile, updateError] = useUpdateProfile(auth);
 
-    
+
     const [token] = useToken(user || gUser)
 
-   
 
-    if (loading ||gLoading) return <div className='flex justify-center items-center h-screen'> <p>Loading...</p>
+
+    if (loading || gLoading) return <div className='flex justify-center items-center h-screen'> <p>Loading...</p>
     </div>
     let firebaseError;
     if (error || updateError || gError) {
@@ -37,9 +37,9 @@ const SignUp = () => {
     }
     if (token) {
         sendEmailVerification(auth.currentUser)
-        .then(() => {
-          alert(`An verification email has sent for verify to ${user?.user.email}`)
-        });
+            .then(() => {
+                alert(`An verification email has sent for verify to ${user?.user.email}`)
+            });
         navigate('/');
     }
     const onSubmit = async data => {
@@ -143,15 +143,15 @@ const SignUp = () => {
                         {firebaseError}
                         <button
                             type="submit"
-                            className="btn btn-outline w-full hover:bg-pink-700">Submit</button>
+                            className="btn btn-outline w-full hover:bg-teal-700">Submit</button>
 
 
                     </form>
-                    <small>Already have an account ?<Link className='text-pink-700 ml-4' to='/logIn'>Go to Login</Link></small>
+                    <small>Already have an account ?<Link className='text-teal-700 ml-4' to='/logIn'>Go to Login</Link></small>
 
                     <div className="divider">OR</div>
 
-                    <button onClick={() => signInWithGoogle()}     className="btn btn-outline w-full hover:bg-pink-700">Continue with google</button>
+                    <button onClick={() => signInWithGoogle()} className="btn btn-outline w-full hover:bg-teal-700">Continue with google</button>
 
 
 

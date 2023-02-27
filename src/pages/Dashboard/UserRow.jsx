@@ -9,9 +9,9 @@ const UserRow = ({ user, refetch }) => {
 
     fetch(`http://localhost:5000/user/admin/${email}`, {
       method: 'PUT',
-      // headers: {
-      //   authorization: `Bearer ${localStorage.getItem('accessToken')}`
-      // }
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
     }).then(res => {
       if (res.status === 403){
         toast.error('Failed to make an error')
@@ -30,6 +30,9 @@ const UserRow = ({ user, refetch }) => {
 
     fetch(`http://localhost:5000/deleteUser/${email}`, {
       method: 'DELETE',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
 
     }).then(res => res.json())
       .then(data => {

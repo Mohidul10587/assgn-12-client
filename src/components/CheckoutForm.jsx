@@ -28,8 +28,8 @@ const CheckoutForm = ({ singleOrder }) => {
     fetch("http://localhost:5000/create-payment-intent", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
-
+        "Content-Type": "application/json",
+        'authorization': `Bearer ${localStorage.getItem('accessToken')}`
       },
       body: JSON.stringify({ price }),
     })
@@ -98,7 +98,7 @@ const CheckoutForm = ({ singleOrder }) => {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
-
+          authorization: `Bearer ${localStorage.getItem('accessToken')}`
         },
         body: JSON.stringify(payment)
       })

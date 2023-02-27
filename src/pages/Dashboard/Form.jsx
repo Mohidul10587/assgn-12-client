@@ -3,11 +3,12 @@ import { useForm } from 'react-hook-form';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../Authentication/firebase.init';
+import { toast } from 'react-toastify';
 
 
 const Form = () => {
 
-  const[user]=useAuthState(auth)
+  const [user] = useAuthState(auth)
   const { register, formState: { errors }, handleSubmit, reset } = useForm();
   const imageStorageKey = '6c0277e2286d8c4a1059080d1574e2a7'
 
@@ -31,8 +32,9 @@ const Form = () => {
             method: 'POST',
             headers: {
               'content-type': 'application/json',
-
+              authorization: `Bearer ${localStorage.getItem('accessToken')}`
             },
+
             body: JSON.stringify({
               name: data.name,
               price: data.price,
@@ -40,23 +42,28 @@ const Form = () => {
               quantity: data.quantity,
               description: data.description,
               img: imgUrl,
-              email:user.email
+              email: user.email
             })
           })
             .then(res => res.json())
-            .then(() => {
+            .then((data) => {
 
-              alert('ok')
-              reset()
+              if (data.acknowledged) {
+                toast.success('Your product added successfully')
+                reset()
+              } else {
+                toast.error('Sorry the product does not added. Please try again')
+              }
+
             })
         }
       })
 
   }
-  
+
   return (
     <div className='flex justify-center pt-24 min-h-screen'>
-    
+
       <div className=''>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control w-full max-w-xs">
@@ -85,7 +92,7 @@ const Form = () => {
             </label>
 
           </div>
-       
+
           <div className="form-control w-full max-w-xs">
             <label className="label">
               <span className="label-text">Price</span>
@@ -114,7 +121,7 @@ const Form = () => {
           </div>
 
 
-       
+
 
           <div className="form-control w-full max-w-xs">
             <label className="label">
@@ -200,22 +207,22 @@ const Form = () => {
               <span className="label-text">Photo</span>
 
             </label>
-           <div className='border-[1px] p-2 rounded-md border-black'>
-           <input
-              type="file"
+            <div className='border-[1px] p-2 rounded-md border-black'>
+              <input
+                type="file"
 
-              {...register("image", {
-                required: {
-                  value: true,
-                  message: 'This is required field'
-                }
-              })} />
-           </div>
+                {...register("image", {
+                  required: {
+                    value: true,
+                    message: 'This is required field'
+                  }
+                })} />
+            </div>
             <label className="label">
               {errors.image?.type === 'required' && <span className='text-red-500'>{errors.image?.message}</span>}
             </label>
           </div>
-         
+
           <button
             type="submit"
             className="btn btn-outline w-80 mt-10 hover:bg-teal-700">Add</button>

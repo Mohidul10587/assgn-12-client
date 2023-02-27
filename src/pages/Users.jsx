@@ -25,11 +25,11 @@ const Users = () => {
       <div className="overflow-x-auto">
         <table className="table w-full">
 
-          <thead className='border-[1px] border-pink-700'>
+          <thead className='border-[1px] border-teal-700'>
             <tr >
-              <th className='border-[1px] border-pink-700 text-center text-base'>User Email</th>
-              <th className='border-[1px] border-pink-700 text-center text-base'>User Roll</th>
-              <th className='border-[1px] border-pink-700 text-center text-base'>Remove</th>
+              <th className='border-[1px] border-teal-700 text-center text-base'>User Email</th>
+              <th className='border-[1px] border-teal-700 text-center text-base'>User Roll</th>
+              <th className='border-[1px] border-teal-700 text-center text-base'>Remove</th>
 
 
             </tr>

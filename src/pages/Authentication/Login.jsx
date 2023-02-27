@@ -5,6 +5,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import useToken from '../../hooks/useToken';
 import Spinner from '../../components/Spinner';
 import auth from './firebase.init';
+import { signOut } from 'firebase/auth';
 
 
 const Login = () => {
@@ -25,6 +26,9 @@ const Login = () => {
     useEffect(() => {
         if (token) {
             navigate(from, { replace: true });
+        }
+        else{
+            signOut(auth);
         }
     }, [token, from, navigate])
 
@@ -115,13 +119,13 @@ const Login = () => {
                         {firebaseError}
                         <button
                             type="submit"
-                            className="btn btn-outline w-full hover:bg-pink-700">Submit</button>
+                            className="btn btn-outline w-full hover:bg-teal-700">Submit</button>
 
 
                     </form>
 
 
-                    <div className='flex justify-between text-xs text-pink-500 font-bold'>
+                    <div className='flex justify-between text-xs text-teal-500 font-bold'>
                         <Link  to='/signUp'>Create new account</Link> 
                         <Link  to='/resetPassword'>Forgot password ?</Link> 
                    
@@ -129,7 +133,7 @@ const Login = () => {
 
                     <div className="divider">OR</div>
 
-                    <button onClick={() => signInWithGoogle()}     className="btn btn-outline w-full hover:bg-pink-700">Continue with google</button>
+                    <button onClick={() => signInWithGoogle()}     className="btn btn-outline w-full hover:bg-teal-700">Continue with google</button>
 
 
                   

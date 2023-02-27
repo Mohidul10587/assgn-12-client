@@ -40,6 +40,7 @@ const Profile = () => {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
       },
       body: JSON.stringify({
         
@@ -50,13 +51,13 @@ const Profile = () => {
       })
     }).then(res => {
       if (res.status === 403) {
-        toast.error('Failed to make an error')
+        toast.error('Failed to update')
       }
       return res.json()
     })
       .then(data => {
         if (data.modifiedCount > 0) {
-          toast.success('Successfully added user as admin')
+          toast.success('Successfully updated user information')
           refetch()
         }
 
@@ -65,7 +66,7 @@ const Profile = () => {
   }
 
 if(isLoading)return <p>Loading..</p>
-console.log(user)
+
   return (
     <div> <img className='w-10 h-10 rounded-full border-black border-2 p-1' src={photoURL} alt="" />
       <p className='ml-2 font-bold'>{displayName}</p>
@@ -95,9 +96,7 @@ console.log(user)
                 <button type='submit'>
                   <label htmlFor="my-modal" className="btn">Submit</label>
                 </button>
-                <button >
                   <label htmlFor="my-modal" className="btn">Cancel</label>
-                </button>
               </div>
             </form>
 

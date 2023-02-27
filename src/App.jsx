@@ -20,7 +20,8 @@ import MyReview from './pages/Dashboard/MyReview';
 import AllUser from './pages/Dashboard/AllUser';
 import ManageAllOrders from './pages/Dashboard/ManageAllOrders';
 import ManageProducts from './pages/Dashboard/ManageProducts';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -53,6 +54,7 @@ function App() {
         <Route path='*' element={<NotFound />} />
 
       </Routes>
+      <ToastContainer />
       <Footer />
     </>
   )

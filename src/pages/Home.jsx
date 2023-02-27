@@ -16,13 +16,15 @@ const Home = () => {
 
   const [user] = useAuthState(auth);
   
-  const userEmail = user.email
   const { data: items, isLoading } = useQuery(['items'], () => fetch(`http://localhost:5000/tools`, {
     method: 'GET',
   }).then(res => res.json()))
 
-  const { data: reviews, isLoadingReview } = useQuery(['reviews'], () => fetch(`http://localhost:5000/reviews/${userEmail}`, {
+  const { data: reviews, isLoadingReview } = useQuery(['reviews',user], () => fetch(`http://localhost:5000/reviews/${user?.email}`, {
     method: 'GET',
+    headers:{
+      authorization: `Bearer ${localStorage.getItem('accessToken')}`
+    }
   }).then(res => res.json()))
   console.log(reviews)
 
@@ -39,8 +41,6 @@ const Home = () => {
     <div className=''>
       <Banner />
       <h1 className='text-4xl font-bold text-center my-10'>Tools Gallery</h1>
-      <button className='btn'><a href="https://courier.uddoktarbazar.com/">Go to courier</a>
-      </button>
       {items ? <div className='grid md:grid-cols-3 grid-cols-1 gap-3 place-items-center text-center md:px-10 px-1'>
         {items?.slice(0, 6).map(item => <div key={item._id} className='border-2 border-teal-600 overflow-hidden rounded-lg w-full'>
           <img className='w-full h-60 border-b-2 border-teal-600' src={item.img} alt="" />
