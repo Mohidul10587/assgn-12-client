@@ -1,7 +1,9 @@
 # Power Tools Manufacturing 
 
 
-[link of live site](https://scintillating-peony-c6d6e5.netlify.app/) for more information.## Site description
+[link of live site](https://scintillating-peony-c6d6e5.netlify.app/) for more information.
+
+## Site description
 
 * This is an Inventory management site.
 * In the home page you can show the inventories.
