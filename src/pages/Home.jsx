@@ -15,19 +15,17 @@ import auth from './Authentication/firebase.init';
 const Home = () => {
 
   const [user] = useAuthState(auth);
-  
+
   const { data: items, isLoading } = useQuery(['items'], () => fetch(`http://localhost:5000/tools`, {
     method: 'GET',
   }).then(res => res.json()))
 
-  const { data: reviews, isLoadingReview } = useQuery(['reviews',user], () => fetch(`http://localhost:5000/reviews/${user?.email}`, {
+  const { data: reviews, isLoadingReview } = useQuery(['reviews', user], () => fetch(`http://localhost:5000/reviews/${user?.email}`, {
     method: 'GET',
-    headers:{
+    headers: {
       authorization: `Bearer ${localStorage.getItem('accessToken')}`
     }
   }).then(res => res.json()))
-  console.log(reviews)
-
 
   if (isLoading) {
     return <div className=' flex justify-center font-bold text-3xl pt-20 min-h-screen'><Spinner /></div>
@@ -35,13 +33,22 @@ const Home = () => {
   if (isLoadingReview) {
     return <div className=' flex justify-center font-bold text-3xl pt-20 min-h-screen'><Spinner /></div>
   }
-  
+
 
   return (
     <div className=''>
-      <Banner />
+
+      <div className='md:block hidden'>
+        <Banner image='images.jpeg' />
+      </div>
+
+      <div className='md:hidden block'>
+        <Banner image='product.webp' />
+      </div>
+
+
       <h1 className='text-4xl font-bold text-center my-10'>Tools Gallery</h1>
-      {items ? <div className='grid md:grid-cols-3 grid-cols-1 gap-3 place-items-center text-center md:px-10 px-1'>
+      {items ? <div className='px-4 grid md:grid-cols-3 grid-cols-1 gap-3 place-items-center text-center md:px-10 '>
         {items?.slice(0, 6).map(item => <div key={item._id} className='border-2 border-teal-600 overflow-hidden rounded-lg w-full'>
           <img className='w-full h-60 border-b-2 border-teal-600' src={item.img} alt="" />
           <div className='p-3'>
@@ -61,33 +68,33 @@ const Home = () => {
 
       <h1 className='text-4xl font-bold text-center  mt-20'>At a Glance</h1>
       <h1 className='text-xl text-center '>We are one of your business partner</h1>
-      <div className='flex justify-between px-20 mt-20'>
-        <div className='flex justify-center items-center border-[1px] border-teal-400 h-44 w-44'>
+      <div className='md:flex justify-between md:px-20 px-4 mt-20'>
+        <div className='flex justify-center items-center border-[1px] mt-4 border-teal-400 h-44 md:w-44 w-full'>
           <div className='text-center'>
             <p className='flex justify-center text-4xl text-teal-600'><FiFlag /></p>
             <p className='text-4xl mt-4 font-bold'>72</p>
             <p className='text-teal-600 font-bold'>Countries</p>
           </div>
         </div>
-        <div className='flex justify-center items-center border-[1px] border-teal-400 h-44 w-44'>
+        <div className='flex justify-center items-center border-[1px] mt-4 border-teal-400 h-44 md:w-44 w-full'>
           <div className='text-center'>
             <p className='flex justify-center text-4xl text-teal-600'><FaUsers /></p>
             <p className='text-4xl mt-4 font-bold'>480+</p>
             <p className='text-teal-600 font-bold'>Satisfied Customer</p>
           </div>
-        </div><div className='flex justify-center items-center border-[1px] border-teal-400 h-44 w-44'>
+        </div><div className='flex justify-center items-center border-[1px] mt-4 border-teal-400 h-44 md:w-44 w-full'>
           <div className='text-center'>
             <p className='flex justify-center text-4xl text-teal-600'><AiFillLike /></p>
             <p className='text-4xl mt-4 font-bold'>380+</p>
             <p className='text-teal-600 font-bold'>Feedback</p>
           </div>
-        </div><div className='flex justify-center items-center border-[1px] border-teal-400 h-44 w-44'>
+        </div><div className='flex justify-center items-center border-[1px] mt-4 border-teal-400 h-44 md:w-44 w-full'>
           <div className='text-center'>
             <p className='flex justify-center text-4xl text-teal-600'><HiTemplate /></p>
             <p className='text-4xl mt-4 font-bold'>24+</p>
             <p className='text-teal-600 font-bold'>Items</p>
           </div>
-        </div><div className='flex justify-center items-center border-[1px] border-teal-400 h-44 w-44'>
+        </div><div className='flex justify-center items-center border-[1px] mt-4 border-teal-400 h-44 md:w-44 w-full'>
           <div className='text-center'>
             <p className='flex justify-center text-4xl text-teal-600'><CgDollar /></p>
             <p className='text-4xl mt-4 font-bold'>800K$+</p>

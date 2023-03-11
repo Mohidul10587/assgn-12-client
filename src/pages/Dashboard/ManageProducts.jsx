@@ -26,11 +26,17 @@ const ManageProducts = () => {
       })
   }
   if (isLoading) return <p>Loading........</p>
+  console.log(allTools)
   return (
     <div>
-      {allTools.map(tool => <div key={tool._id} >
+      {allTools.map(tool => <div key={tool._id} className='flex justify-between items-center px-4 py-2 rounded border-[1px] border-teal-600 mt-2'>
+        <img className='h-16 w-16 rounded-full' src={tool.img} alt="" />
         <p>{tool.name}</p>
-        <button onClick={()=>handleDelete(tool._id)} className='btn'>Delete</button>
+        <p>{tool.price}</p>
+        <p>{tool.name}</p>
+        <p>{tool.name}</p>
+
+        <button onClick={() => handleDelete(tool._id)} className='btn'>Delete</button>
       </div>)}
     </div>
   )
