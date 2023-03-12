@@ -49,16 +49,14 @@ const Login = () => {
 
     }
     return (
-        <div className='flex justify-center items-center'>
-            <div className="card w-96 bg-base-100 shadow-xl">
+        <div className='flex justify-center items-center min-h-screen'>
+            <div className="card w-96 bg-base-100 shadow-slate-600 shadow-xl border-[1px] border-black">
                 <div className="card-body">
                     <h2 className="text-center text-xl">Log in</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
-
-
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
-                                <span className="label-text">Email</span>
+                                <span className="label-text font-bold">Email</span>
 
                             </label>
                             <input
@@ -89,7 +87,7 @@ const Login = () => {
 
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
-                                <span className="label-text">Password</span>
+                                <span className="label-text font-bold">Password</span>
 
                             </label>
                             <input

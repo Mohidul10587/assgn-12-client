@@ -47,7 +47,7 @@ const Profile = () => {
         education: e.target.education.value,
         location: e.target.location.value,
         phnNumber: e.target.phnNumber.value,
-        socialMedia:e.target.socialMedia.value
+        socialMedia: e.target.socialMedia.value
 
       })
     }).then(res => {
@@ -70,18 +70,25 @@ const Profile = () => {
   if (isLoading) return <p>Loading..</p>
 
   return (
-    <div> <img className='w-10 h-10 rounded-full border-black border-2 p-1' src={photoURL} alt="" />
-      <p className='ml-2 font-bold'>{displayName}</p>
-      <p>{userEmail}</p>
-      <p>{user.location}</p>
-      <p>{user.education}</p>
-      <p>{user.phnNumber}</p>
-      <a href={user.socialMedia}> <p>{user.socialMedia}</p></a>
-    
+    <div>
+      <img className='w-10 h-10 rounded-full border-black border-2 p-1' src={photoURL} alt="" />
+      <p>Name:</p>
+      <p className='font-bold'>{displayName}</p>
+      <p>Email:</p>
+      <p className='font-bold'>{userEmail}</p>
+      <p>Location:</p>
+      <p className='font-bold'>{user.location}</p>
+      <p>Education:</p>
+      <p className='font-bold'>{user.education}</p>
+      <p>Phone number:</p>
+      <p className='font-bold'>{user.phnNumber}</p>
+      <p>Facebook Link:</p>
+      <a className='font-bold' href={user.socialMedia}> <p>{user.socialMedia}</p></a>
 
 
 
-      <button className="border-2 border-black rounded px-4 py-2  ml-4 mt-4"><label htmlFor="my-modal" >Edit Profile</label></button>
+
+      <button className="border-2 border-black rounded px-2 py-1 mt-4"><label htmlFor="my-modal" >Update Profile</label></button>
 
       {/* Put this part before </body> tag */}
       <input type="checkbox" id="my-modal" className="modal-toggle" />
@@ -92,13 +99,13 @@ const Profile = () => {
 
             <form onSubmit={handleProfile}>
               <label htmlFor="education">Education</label> <br />
-              <input type="text" className='border-2 border-black rounded px-4 w-96 h-12' name='education' id='education' defaultValue={user.education}/> <br />
+              <input type="text" className='border-2 border-black rounded px-4 w-96 h-12' name='education' id='education' defaultValue={user.education} /> <br />
               <label htmlFor="location">Location</label> <br />
-              <input type="text" className='border-2 border-black rounded px-4 w-96 h-12' name='location' id='location' defaultValue={user.location}/> <br />
+              <input type="text" className='border-2 border-black rounded px-4 w-96 h-12' name='location' id='location' defaultValue={user.location} /> <br />
               <label htmlFor="phnNumber">Phone Number</label> <br />
-              <input type="text" className='border-2 border-black rounded px-4 w-96 h-12' name='phnNumber' id='phnNumber' defaultValue={user.phnNumber}/> <br />
+              <input type="text" className='border-2 border-black rounded px-4 w-96 h-12' name='phnNumber' id='phnNumber' defaultValue={user.phnNumber} /> <br />
               <label htmlFor="socialMedia">Social Media link</label> <br />
-              <input type="url" className='border-2 border-black rounded px-4 w-96 h-12' name='socialMedia' id='socialMedia' defaultValue={user.socialMedia}/> <br />
+              <input type="url" className='border-2 border-black rounded px-4 w-96 h-12' name='socialMedia' id='socialMedia' defaultValue={user.socialMedia} /> <br />
               <div className='flex justify-center mt-4'>
                 <button type='submit'>
                   <label htmlFor="my-modal" className="border-2 border-black rounded px-4 py-2">Submit</label>

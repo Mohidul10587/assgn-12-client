@@ -48,15 +48,16 @@ const Home = () => {
 
 
       <h1 className='text-4xl font-bold text-center my-10'>Tools Gallery</h1>
-      {items ? <div className='px-4 grid md:grid-cols-3 grid-cols-1 gap-3 place-items-center text-center md:px-10 '>
+      {items ? <div className='px-4 grid md:grid-cols-3 grid-cols-1 gap-3 place-items-center  md:px-10 '>
         {items?.slice(0, 6).map(item => <div key={item._id} className='border-2 border-teal-600 overflow-hidden rounded-lg w-full'>
-          <img className='w-full h-60 border-b-2 border-teal-600' src={item.img} alt="" />
+          <img className='w-full h-60 border-b-2 border-teal-600 p-6' src={item.img} alt="" />
           <div className='p-3'>
             <p className='font-bold mt-3 text-xl'>{item.name}</p>
-            <p>Price: {item.price} TK</p>
+            <p className='font-bold'>Price:$ {item.price}</p>
+            <p className='font-bold'>Description:</p>
             <p className='text-justify h-32 overflow-y-scroll py-2'>{item.description}</p>
-            <p>Available quantity :{item.quantity}</p>
-            <p>Minimum order quantity:{item.minOrderQuantity}</p>
+            <p className='font-bold'>Available quantity :{item.quantity}</p>
+            <p className='font-bold'>Minimum order quantity:{item.minOrderQuantity}</p>
             <Link to={`buy/${item._id}`}><button className=' text-white  rounded-md px-4 mt-2 py-2 bg-teal-700'>Buy Now</button></Link>
 
           </div>

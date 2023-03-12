@@ -28,15 +28,19 @@ const ManageProducts = () => {
   if (isLoading) return <p>Loading........</p>
   console.log(allTools)
   return (
-    <div>
-      {allTools.map(tool => <div key={tool._id} className='flex justify-between items-center px-4 py-2 rounded border-[1px] border-teal-600 mt-2'>
-        <img className='h-16 w-16 rounded-full' src={tool.img} alt="" />
-        <p>{tool.name}</p>
-        <p>{tool.price}</p>
-        <p>{tool.name}</p>
-        <p>{tool.name}</p>
+    <div className='pr-2'>
+      <div className='flex justify-between items-center px-4 py-2 rounded border-[1px] border-teal-600 mt-2'>
+        <p className='w-24 text-start'>Img</p>
+        <p className='w-24 text-start'>Name</p>
+        <p className='w-24 text-start'>Price</p>
+        <p className='w-24 text-center'>X</p>
 
-        <button onClick={() => handleDelete(tool._id)} className='btn'>Delete</button>
+      </div>
+      {allTools.map(tool => <div key={tool._id} className='flex justify-between items-center px-4 py-2 rounded border-[1px] border-teal-600 mt-2'>
+       <div className='w-24 '> <img className='h-14 w-14 rounded-full p-2 border-[1px] border-teal-700' src={tool.img} alt="" /></div>
+        <p className='w-24 text-start'>{tool.name}</p>
+        <p className='w-24 text-start'>$ {tool.price}</p>
+        <p className='w-24 text-red-500 border-[1px] py-1 rounded text-center border-red-500 first-letter:' onClick={() => handleDelete(tool._id)}>Delete</p>
       </div>)}
     </div>
   )

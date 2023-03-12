@@ -3,7 +3,7 @@ import React from 'react'
 const Slider = ({image}) => {
   return (
     <div className='w-full h-screen'>
-      <div style={{ backgroundImage: `url(/${image}` }} className="w-full h-screen bg-center bg-contain bg-no-repeat">
+      <div style={{ backgroundImage: `url(/${image}` }} className="w-full h-screen bg-center bg-contain  bg-no-repeat">
         <div className='h-full w-full bg-gray-900 bg-opacity-40 flex md:justify-center justify-center items-center'>
          <div className='w-1/2 italic'>
          <p className='font bold md:text-4xl text-2xl text-white'>Welcome to...</p>
