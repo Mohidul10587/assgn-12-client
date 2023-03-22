@@ -16,11 +16,11 @@ const Home = () => {
 
   const [user] = useAuthState(auth);
 
-  const { data: items, isLoading } = useQuery(['items'], () => fetch(`http://localhost:5000/tools`, {
+  const { data: items, isLoading } = useQuery(['items'], () => fetch(`https://tools-house.onrender.com/tools`, {
     method: 'GET',
   }).then(res => res.json()))
 
-  const { data: reviews, isLoadingReview } = useQuery(['reviews', user], () => fetch(`http://localhost:5000/reviews/${user?.email}`, {
+  const { data: reviews, isLoadingReview } = useQuery(['reviews', user], () => fetch(`https://tools-house.onrender.com/reviews/${user?.email}`, {
     method: 'GET',
     headers: {
       authorization: `Bearer ${localStorage.getItem('accessToken')}`

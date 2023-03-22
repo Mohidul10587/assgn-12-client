@@ -14,7 +14,9 @@ const Form = () => {
 
 
   const onSubmit = async data => {
+  
     const image = data.image[0]
+    console.log(image)
     const formData = new FormData();
     formData.append('image', image)
 
@@ -28,7 +30,7 @@ const Form = () => {
 
           const imgUrl = result.data.url
 
-          fetch('http://localhost:5000/tools', {
+          fetch('https://tools-house.onrender.com/tools', {
             method: 'POST',
             headers: {
               'content-type': 'application/json',

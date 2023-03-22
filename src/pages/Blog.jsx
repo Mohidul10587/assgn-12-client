@@ -21,7 +21,7 @@ const Blog = () => {
       <h1 className='font-bold'>14.5 You have an array of products. Each product has a name, price, description, etc. How will you implement a search to find products by name?</h1>
       <p>Ans:  First of all i catch the value of search input then . Then set in a state by clicking the on a button . Then i pass the value via fetch api to the backend . Then i extract the search value from prarams . Then i filter into the all products with startswith method.</p>
       <h1 className='font-bold'>14.6 What is a unit test? Why should write unit tests?</h1>
-      <p>Ans: Unit Testing is a type of software testing where individual units or components of a software are tested. </p>
+      <p>Ans: Unit Testing is a type of software testing where individual units or components of a software are tested. I helps us to make free our software from wrong input. </p>
     </div>
   )
 }

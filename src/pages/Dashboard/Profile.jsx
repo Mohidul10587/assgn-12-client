@@ -15,7 +15,7 @@ const Profile = () => {
 
 
   const { isLoading, data: user, refetch } = useQuery(['user'], () =>
-    fetch(`http://localhost:5000/singleUser/${userEmail}`, {
+    fetch(`https://tools-house.onrender.com/singleUser/${userEmail}`, {
       method: 'GET',
       headers: {
         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -36,7 +36,7 @@ const Profile = () => {
 
 
 
-    fetch(`http://localhost:5000/user/update/${userEmail}`, {
+    fetch(`https://tools-house.onrender.com/user/update/${userEmail}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
