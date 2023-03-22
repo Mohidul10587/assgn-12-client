@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
+
 const firebaseConfig = {
   apiKey:"AIzaSyDc1BOUJPIh7N7LS3y6q5WdSquEFhy20Hs",
   authDomain:process.env.REACT_APP_AUTH_DOMAIN,
