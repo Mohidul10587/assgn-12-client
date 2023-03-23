@@ -25,12 +25,13 @@ const Login = () => {
 
     useEffect(() => {
         if (token) {
-            navigate(from, { replace: true });
+            console.log('first')
+            navigate('/');
         }
         else{
             signOut(auth);
         }
-    }, [token, from, navigate])
+    }, [token])
 
     let firebaseError;
 

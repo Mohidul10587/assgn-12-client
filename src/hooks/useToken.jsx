@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 
 const useToken = user => {
     const [token, setToken] = useState('')
-   console.log('first')
     useEffect(() => {
         console.log(user)
         const email = user?.user?.email;
@@ -26,7 +25,6 @@ const useToken = user => {
                 .then(data => {
                   
                     const accessToken = data.token;
-                    c
                     localStorage.setItem('accessToken', accessToken)
                     setToken(accessToken)
                 })
