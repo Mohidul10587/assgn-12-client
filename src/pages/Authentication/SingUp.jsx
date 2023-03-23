@@ -3,32 +3,17 @@ import React from 'react'
 import { useCreateUserWithEmailAndPassword, useUpdateProfile, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-
-
 import auth from './firebase.init';
 import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
 
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const [
-        createUserWithEmailAndPassword,
-        user,
-        loading,
-        error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    const [ createUserWithEmailAndPassword,user, loading,error,] = useCreateUserWithEmailAndPassword(auth);
     const navigate = useNavigate()
-    let location = useLocation();
-    let from = location.state?.from?.pathname || "/";
     const [updateProfile, updateError] = useUpdateProfile(auth);
-
-
     const [token] = useToken(user || gUser)
-
-
-
     if (loading || gLoading) return <div className='flex justify-center items-center h-screen'> <p>Loading...</p>
     </div>
     let firebaseError;
