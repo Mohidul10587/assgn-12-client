@@ -8,7 +8,7 @@ const useAdmin = (user) => {
         const email = user?.email
 
         if (email) {
-            fetch(`https://tools-house.onrender.com/admin/${email}`, {
+            fetch(`http://localhost:5000/admin/${email}`, {
                 method: 'GET',
                 headers: {
                     'content-type': 'application/json',

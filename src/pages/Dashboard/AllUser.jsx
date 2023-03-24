@@ -7,7 +7,7 @@ const AllUser = () => {
 
 
   const { isLoading, data: users ,refetch} = useQuery(['users'], () =>
-    fetch(`https://tools-house.onrender.com/user`, {
+    fetch(`http://localhost:5000/user`, {
       method: 'GET',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`

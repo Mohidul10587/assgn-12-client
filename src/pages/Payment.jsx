@@ -12,8 +12,8 @@ const Payment = () => {
     const id = query.id;
 
 
-    const { isLoading, data: singleOrder, refetch } = useQuery(['users'], () =>
-        fetch(`https://tools-house.onrender.com/orders/${id}`, {
+    const { isLoading, data: singleOrder, refetch } = useQuery(['singleOrder'], () =>
+        fetch(`http://localhost:5000/orders/${id}`, {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -22,7 +22,7 @@ const Payment = () => {
     if (isLoading) {
         return <h1 className='pt-24 min-h-screen'>Loading...</h1>
     }
-    console.log(singleOrder.quantity)
+    console.log(singleOrder)
     return (<div className='pt-24 min-h-screen '>
 
         <h1 className='text-center'>Give the card information</h1>

@@ -13,7 +13,7 @@ const MyReview = () => {
 
     console.log(ratings, review)
 
-    fetch('https://tools-house.onrender.com/review', {
+    fetch('http://localhost:5000/review', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

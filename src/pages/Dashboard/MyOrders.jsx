@@ -8,7 +8,7 @@ const MyOrders = () => {
 
   const [user, loading] = useAuthState(auth);
   // console.log(user)
-  const { data: myOrders, isLoading, refetch } = useQuery(['myOrders',user], () => fetch(`https://tools-house.onrender.com/myOrders/${user.email}`, {
+  const { data: myOrders, isLoading, refetch } = useQuery(['myOrders',user], () => fetch(`http://localhost:5000/myOrders/${user.email}`, {
     method: 'GET',
     headers:{
       authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -16,19 +16,18 @@ const MyOrders = () => {
   }).then(res => res.json()))
 
   const handleDelete = (id) => {
-    fetch(`https://tools-house.onrender.com/deleteOrder/${id}`, {
+    fetch(`http://localhost:5000/deleteOrder/${id}`, {
       method: 'DELETE',
       headers:{
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
       }
     }).then(res => res.json())
       .then(data => {
-        if (data.deletedCount) {
+        if (data.deletedCount) { 
           refetch()
         }
       })
   }
-
 
   if (isLoading) {
     return <p>loading</p>
@@ -41,7 +40,7 @@ const MyOrders = () => {
         <div className='flex items-center'>
           <img className='w-14 h-14 border-2 border-teal-600 rounded-full p-2' src={order.item.img} alt="" />
           <p className='ml-4'>Name: <span className='font-bold'>{order.item.name}</span></p>
-          <p className='ml-4'>Qnt: <span className='font-bold'>{order.item.quantity}</span></p>
+          <p className='ml-4'>Qnt: <span className='font-bold'>{order.orderQuantity}</span></p>
 
         </div>
         <div className=''>

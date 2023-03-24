@@ -7,7 +7,7 @@ const UserRow = ({ user, refetch }) => {
 
   const makeAdmin = () => {
 
-    fetch(`https://tools-house.onrender.com/user/admin/${email}`, {
+    fetch(`http://localhost:5000/user/admin/${email}`, {
       method: 'PUT',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -28,7 +28,7 @@ const UserRow = ({ user, refetch }) => {
 
   const handleDelete = (email) => {
 
-    fetch(`https://tools-house.onrender.com/deleteUser/${email}`, {
+    fetch(`http://localhost:5000/deleteUser/${email}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`

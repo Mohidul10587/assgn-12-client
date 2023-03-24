@@ -20,12 +20,13 @@ const CheckoutForm = ({ singleOrder }) => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const price = singleOrder.item.price;
+  const price = singleOrder.item.price*singleOrder.orderQuantity;
+  console.log(singleOrder)
 
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("https://tools-house.onrender.com/create-payment-intent", {
+    fetch("http://localhost:5000/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -91,10 +92,11 @@ const CheckoutForm = ({ singleOrder }) => {
       const payment = {
         myPrice: price,
         orderId: singleOrder._id,
-        transactionId: paymentIntent.id
+        transactionId: paymentIntent.id,
+        status:'Pending'
 
       }
-      fetch('https://tools-house.onrender.com/payments', {
+      fetch('http://localhost:5000/payments', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',

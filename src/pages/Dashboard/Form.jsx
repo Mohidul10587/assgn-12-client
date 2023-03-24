@@ -30,7 +30,7 @@ const Form = () => {
 
           const imgUrl = result.data.url
 
-          fetch('https://tools-house.onrender.com/tools', {
+          fetch('http://localhost:5000/tools', {
             method: 'POST',
             headers: {
               'content-type': 'application/json',

@@ -16,7 +16,7 @@ const BuyNow = () => {
   // const [displayProduct, setDisplayProduct] = useState(true)
   const query = useParams()
   const id = query.id;
-  const { data: item, isLoading } = useQuery(['item'], () => fetch(`https://tools-house.onrender.com/tools/${id}`, {
+  const { data: item, isLoading } = useQuery(['item'], () => fetch(`http://localhost:5000/tools/${id}`, {
     method: 'GET',
   }).then(res => res.json()))
 
@@ -36,7 +36,7 @@ const BuyNow = () => {
     }
     else {
 
-      fetch('https://tools-house.onrender.com/order', {
+      fetch('http://localhost:5000/order', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -47,7 +47,8 @@ const BuyNow = () => {
           item,
           orderQuantity,
           phoneNo,
-          address
+          address,
+          status: 'Unpaid'
 
         })
       })
@@ -55,10 +56,10 @@ const BuyNow = () => {
         .then((data) => {
           if (data.acknowledged) {
             toast.success('Your order submitted successfully')
-            e.target.quantity.value =''
-            e.target.phoneNo.value =''
-            e.target.address.value=''
-          }else{
+            e.target.quantity.value = ''
+            e.target.phoneNo.value = ''
+            e.target.address.value = ''
+          } else {
             toast.error('Sorry your order does not placed. Please try again')
           }
         })
@@ -108,12 +109,9 @@ const BuyNow = () => {
               <input name='phoneNo' id='phoneNo' className='rounded-md mb-2 px-2 border-2 border-black md:w-96 w-64' type="tel" required /> <br />
               <label htmlFor="address" className='font-bold'>Delivery Address</label> <br />
               <textarea name='address' id='address' className='rounded-md mb-2 px-2 border-2 border-black md:w-96 w-64' type="text" required /> <br />
-
-
-
-<div className='text-center'>
-<button type="submit" className='mt-4 bg-teal-600 text-white font-bold border-teal-900 border-2 rounded-md py-1 px-3'>Place Order</button>
-</div>
+              <div className='text-center'>
+                <button type="submit" className='mt-4 bg-teal-600 text-white font-bold border-teal-900 border-2 rounded-md py-1 px-3'>Place Order</button>
+              </div>
             </form>
           </div>
         </div>
