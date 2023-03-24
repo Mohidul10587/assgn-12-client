@@ -11,11 +11,6 @@ const Dashboard = () => {
 
   const [user] = useAuthState(auth)
   const [admin] = useAdmin(user)
-
-
-
-
-
   return (
 
 
@@ -34,15 +29,15 @@ const Dashboard = () => {
           {/* <!-- Sidebar content here --> */}
           <li className='mb-2 bg-white rounded-md'> <Link to='/dashboard'>Profile</Link></li>
 
-
+        
           {!admin && <>
+          
             <li className='mb-2 bg-white rounded-md'> <Link to='/dashboard/MyOrders'>My Orders</Link></li>
             <li className='mb-2 bg-white rounded-md'> <Link to='/dashboard/MyReview'>My Review</Link></li>
           </>
           }
         
           {admin && <>
-            <li className='mb-2 bg-white rounded-md'> <Link to='/dashboard/MyOrders'>My Orders</Link></li>
             <li className='mb-2 bg-white rounded-md'> <Link to='/dashboard/manageProducts'>Manage All Products</Link></li>
             <li className='mb-2 bg-white rounded-md'> <Link to='/dashboard/form'>Add a Products</Link></li>
             <li className='mb-2 bg-white rounded-md'> <Link to='/dashboard/manageAllOrder'>Manage All Orders</Link></li>

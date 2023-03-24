@@ -37,7 +37,10 @@ const Navbar = () => {
         <Link className='md:w-1/3' to='/'> <p className=' font-bold py-2 text-white ml-4 sm:text-3xl text-xl'>LG </p></Link>
         {user ? <div className='md:flex hidden'>
           <Link to='/'> <p className='sm:mx-3 mx-1 my-3 px-3 font-bold text-white'> Home</p></Link>
+
           <Link to='/dashboard'> <p className='sm:mx-3 mx-1 my-3 px-3  font-bold text-white'> Dashboard</p></Link>
+          <Link to='/portfolio'> <p className='sm:mx-3 mx-1 my-3 px-3  font-bold text-white'> Portfolio</p></Link>
+          
           <Link to='/blog'> <p className='sm:mx-3 mx-1 my-3 px-3  font-bold text-white'> Blog</p></Link>
           <button className='sm:mx-3 mx-1  my-3 px-3  font-bold text-white' onClick={signedOut}> Log Out</button>
         </div> : <div className='md:flex hidden'>

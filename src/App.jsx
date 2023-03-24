@@ -22,6 +22,7 @@ import ManageAllOrders from './pages/Dashboard/ManageAllOrders';
 import ManageProducts from './pages/Dashboard/ManageProducts';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Portfolio from './pages/Portfolio';
 
 
 
@@ -32,6 +33,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
+        <Route path='/portfolio' element={<Portfolio />} />
         <Route path='/' element={<Home />} />
         <Route path='/form' element={<Form />} />
         <Route path='/blog' element={<Blog />} />

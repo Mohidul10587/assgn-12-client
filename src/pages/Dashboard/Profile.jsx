@@ -3,6 +3,7 @@ import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import auth from '../Authentication/firebase.init'
 import { toast } from 'react-toastify';
+import Spinner from '../../components/Spinner';
 
 const Profile = () => {
 
@@ -25,17 +26,8 @@ const Profile = () => {
   )
 
 
-
-
-
-
-
   const handleProfile = (e) => {
     e.preventDefault()
-
-
-
-
     fetch(`https://tools-house.onrender.com/user/update/${userEmail}`, {
       method: 'PUT',
       headers: {
@@ -67,7 +59,7 @@ const Profile = () => {
 
   }
 
-  if (isLoading) return <p>Loading..</p>
+  if (isLoading) return <div className=' flex justify-center font-bold text-3xl pt-20 min-h-screen'><Spinner /></div>
 
   return (
     <div>

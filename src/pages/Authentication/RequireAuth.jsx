@@ -1,6 +1,7 @@
 import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Navigate, useLocation } from 'react-router-dom';
+import Spinner from '../../components/Spinner';
 import auth from './firebase.init';
 
 
@@ -11,8 +12,9 @@ const RequireAuth = ({ children }) => {
     let location = useLocation();
 
 
-    if (loading) return <div className='flex justify-center items-center h-screen'> <p>Loading</p>
-    </div>
+    if (loading)  return <div className=' flex justify-center font-bold text-3xl pt-20 min-h-screen'><Spinner /></div>
+
+
 
 
     if (!user) {

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { toast } from 'react-toastify';
 import React from 'react'
+import Spinner from '../../components/Spinner';
 
 const ManageProducts = () => {
 
@@ -28,7 +29,7 @@ const ManageProducts = () => {
         }
       })
   }
-  if (isLoading) return <p>Loading........</p>
+  if (isLoading) return <div className=' flex justify-center items-center font-bold text-3xl pt-20 min-h-screen -mt-24'><Spinner /></div>
   console.log(allTools)
   return (
     <div className='pr-2'>

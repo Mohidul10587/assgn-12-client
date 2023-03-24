@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import Spinner from '../../components/Spinner';
 import auth from '../Authentication/firebase.init';
 
 const ManageAllOrders = () => {
@@ -46,7 +47,8 @@ const ManageAllOrders = () => {
   }
   
   if (isLoading) {
-    return <p>loading</p>
+    return <div className=' flex justify-center font-bold text-3xl min-h-screen -mt-24 items-center'><Spinner /></div>
+  
   }
   console.log(myOrders)
   return (

@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react'
+import Spinner from '../../components/Spinner';
 import UserRow from './UserRow';
 
 
@@ -16,7 +17,8 @@ const AllUser = () => {
       .then(res => res.json())
   )
 
-  if (isLoading) return <p>ok</p>
+  if (isLoading)     return <div className=' flex justify-center font-bold text-3xl pt-20 min-h-screen'><Spinner /></div>
+
 
   return (
     <div className='mt-10'>
