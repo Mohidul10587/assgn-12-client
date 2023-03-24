@@ -16,7 +16,7 @@ const BuyNow = () => {
   // const [displayProduct, setDisplayProduct] = useState(true)
   const query = useParams()
   const id = query.id;
-  const { data: item, isLoading } = useQuery(['item'], () => fetch(`http://localhost:5000/tools/${id}`, {
+  const { data: item, isLoading } = useQuery(['item'], () => fetch(`https://tools-house.onrender.com/tools/${id}`, {
     method: 'GET',
   }).then(res => res.json()))
 
@@ -36,7 +36,7 @@ const BuyNow = () => {
     }
     else {
 
-      fetch('http://localhost:5000/order', {
+      fetch('https://tools-house.onrender.com/order', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',

@@ -13,7 +13,7 @@ const Payment = () => {
 
 
     const { isLoading, data: singleOrder, refetch } = useQuery(['singleOrder'], () =>
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://tools-house.onrender.com/orders/${id}`, {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

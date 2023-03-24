@@ -5,7 +5,7 @@ import React from 'react'
 const ManageProducts = () => {
 
   const { isLoading, data: allTools, refetch } = useQuery(['allTools'], () =>
-    fetch(`http://localhost:5000/tools`, {
+    fetch(`https://tools-house.onrender.com/tools`, {
       method: 'GET',
       headers: {
         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -16,7 +16,7 @@ const ManageProducts = () => {
 
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/deleteTool/${id}`, {
+    fetch(`https://tools-house.onrender.com/deleteTool/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`

@@ -13,7 +13,7 @@ const useToken = user => {
 
         console.log('user information', user)
         if (email) {
-            fetch(`http://localhost:5000/user/${email}`, {
+            fetch(`https://tools-house.onrender.com/user/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

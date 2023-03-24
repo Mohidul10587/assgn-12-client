@@ -8,7 +8,7 @@ const ManageAllOrders = () => {
 
   const [user, loading] = useAuthState(auth);
   // console.log(user)
-  const { data: myOrders, isLoading, refetch } = useQuery(['myOrders', user], () => fetch(`http://localhost:5000/allOrders`, {
+  const { data: myOrders, isLoading, refetch } = useQuery(['myOrders', user], () => fetch(`https://tools-house.onrender.com/allOrders`, {
     method: 'GET',
     headers: {
       authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -16,7 +16,7 @@ const ManageAllOrders = () => {
   }).then(res => res.json()))
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/deleteOrder/${id}`, {
+    fetch(`https://tools-house.onrender.com/deleteOrder/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -32,7 +32,7 @@ const ManageAllOrders = () => {
 
 
   const updateStatus = (id) => {
-    fetch(`http://localhost:5000/updatePendingToShiped/${id}`, {
+    fetch(`https://tools-house.onrender.com/updatePendingToShiped/${id}`, {
       method: 'POST',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -44,7 +44,7 @@ const ManageAllOrders = () => {
         }
       })
   }
-
+  
   if (isLoading) {
     return <p>loading</p>
   }

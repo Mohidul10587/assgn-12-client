@@ -26,7 +26,7 @@ const CheckoutForm = ({ singleOrder }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://tools-house.onrender.com/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -96,7 +96,7 @@ const CheckoutForm = ({ singleOrder }) => {
         status:'Pending'
 
       }
-      fetch('http://localhost:5000/payments', {
+      fetch('https://tools-house.onrender.com/payments', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
