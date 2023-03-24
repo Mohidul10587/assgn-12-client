@@ -52,7 +52,7 @@ const Form = () => {
 
               if (data.acknowledged) {
                 toast.success('Your product added successfully')
-                reset()
+              
               } else {
                 toast.error('Sorry the product does not added. Please try again')
               }
