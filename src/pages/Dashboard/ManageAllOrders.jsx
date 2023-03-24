@@ -40,7 +40,7 @@ const ManageAllOrders = () => {
       }
     }).then(res => res.json())
       .then(data => {
-        if (data.deletedCount) {
+        if (data.modifiedCount == 1) {
           refetch()
         }
       })
@@ -50,7 +50,7 @@ const ManageAllOrders = () => {
     return <div className=' flex justify-center font-bold text-3xl min-h-screen -mt-24 items-center'><Spinner /></div>
   
   }
-  console.log(myOrders)
+
   return (
     <div>{myOrders?.map(order => <div className='border-2 border-teal-600 m-3 p-3
     ' key={order._id}>
