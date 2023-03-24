@@ -64,10 +64,10 @@ const Form = () => {
   }
 
   return (
-    <div className='flex justify-center pt-24 min-h-screen'>
+    <div className='flex justify-center  min-h-screen'>
 
       <div className=''>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className='border-[1px] border-teal-800 px-10 pb-4 rounded-lg'>
           <div className="form-control w-full max-w-xs">
             <label className="label">
               <span className="label-text">Name of Item</span>
