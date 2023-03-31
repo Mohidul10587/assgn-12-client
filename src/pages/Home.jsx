@@ -11,10 +11,12 @@ import { CgDollar } from 'react-icons/cg';
 import { useQuery } from '@tanstack/react-query';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './Authentication/firebase.init';
+import UserList from '../components/Users';
 
 const Home = () => {
 
   const [user] = useAuthState(auth);
+  console.log(user?.uid)
 
   const { data: items, isLoading } = useQuery(['items'], () => fetch(`https://tools-house.onrender.com/tools`, {
     method: 'GET',
@@ -117,23 +119,36 @@ const Home = () => {
         </div>
 
       </div>
-      <div className='bg-red-300 font-bold mt-10 h-96 text-center'>
-        Second extra section
+      <div className='bg-teal-300 font-bold mt-10 h-96 flex items-center justify-center'>
+        <p>Second extra section</p>
       </div>
+
+
+
+
+
+
 
       {/* Review */}
       <div className='px-4'>
         <h1 className='text-4xl font-bold text-center  mt-20'>Review</h1>
-        {reviews?.map(review =>
+        {
+          reviews?.length == 0 ? <div className='text-center'>Please give a feedback and help us to improve </div> :
+            <div>
+              {reviews?.map(review =>
 
-          <div key={review._id} className='bg-teal-300 my-3 p-4' >
-            <div className='flex items-center'>
-              <img className='w-10 h-10 rounded-full border-black border-2 p-1' src={user[0]?.photoURL} alt="" />
-              <p className='ml-2 font-bold'>{user.displayName}</p>
-              <p className='ml-2'>{review.ratings}</p>
+                <div key={review._id} className='bg-teal-300 my-3 p-4' >
+                  <div className='flex items-center'>
+                    <img className='w-10 h-10 rounded-full border-black border-2 p-1' src={user[0]?.photoURL} alt="" />
+                    <p className='ml-2 font-bold'>{user.displayName}</p>
+                    <p className='ml-2'>{review.ratings}</p>
+                  </div>
+                  <p>{review.review}</p>
+                </div>)}
+
             </div>
-            <p>{review.review}</p>
-          </div>)}
+        }
+
       </div>
     </div>
   )
